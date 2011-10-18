@@ -1,7 +1,7 @@
 class DataImporter::Item < Struct.new(:description, :price); end
 
 class DataImporter::Purchase
-  attr_reader :data
+  attr_reader :data, :count
   private :data
   
   def initialize(attributes_hash)
@@ -10,7 +10,7 @@ class DataImporter::Purchase
   end
 
   def total_cost
-    data["purchase count"] * data["item price"]
+    count * item.price
   end
 
   def item
@@ -19,6 +19,7 @@ class DataImporter::Purchase
         
 private
   def parse_data(hash)
+    @count  = hash["purchase count"]
     @item = DataImporter::Item.new hash["item description"], hash["item price"]
   end
 

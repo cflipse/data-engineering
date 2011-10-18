@@ -21,6 +21,12 @@ describe DataImporter::Purchase do
         "merchant name" => "The General's Store"
     end
 
+    describe "#count" do
+      it "is the purchase count" do
+        purchase.count.should == 20
+      end
+    end
+
     describe "#item" do
       it "extracts a purchased item" do
         purchase.item.should == DataImporter::Item.new("A bag of hammers", 0.5)

@@ -11,5 +11,4 @@ describe DataImporter do
       importer.gross_revenue.should == 95.0
     end
   end
-
 end

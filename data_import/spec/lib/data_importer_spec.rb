@@ -1,4 +1,3 @@
-
 require 'data_importer'
 
 describe DataImporter do

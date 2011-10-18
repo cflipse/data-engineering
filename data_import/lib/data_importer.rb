@@ -10,8 +10,8 @@ class DataImporter
 
 
   def gross_revenue
-    csv.inject(0) do |sum, row|
-      sum + (row["purchase count"] * row["item price"])
+    purchases.inject(0) do |sum, purchase|
+      sum + purchase.total_cost
     end
   end
 
@@ -25,5 +25,8 @@ class DataImporter
     CSV.read file, :headers => true, :col_sep => "\t",
       :converters => :all
   end
-
+  
+  def purchases
+    @purchases ||= csv.map{|row| DataImporter::Purchase.new(row) }
+  end
 end

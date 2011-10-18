@@ -8,11 +8,14 @@ class DataImporter
     @path = path
   end
 
-
   def gross_revenue
     purchases.inject(0) do |sum, purchase|
       sum + purchase.total_cost
     end
+  end
+
+  def save
+    DataPersistence.new(self).save
   end
 
   private

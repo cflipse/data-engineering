@@ -10,4 +10,23 @@ describe DataImporter::Purchase do
     end
   end
 
+  describe "Extracting data classes" do
+
+    let(:purchase) do
+      DataImporter::Purchase.new "item price" => 0.5 , 
+        "item description" => "A bag of hammers",
+        "purchase count" => 20, 
+        "purchaser name" => "Bob", 
+        "merchant address" => "123 Main St",
+        "merchant name" => "The General's Store"
+    end
+
+    describe "#item" do
+      it "extracts a purchased item" do
+        purchase.item.should == DataImporter::Item.new("A bag of hammers", 0.5)
+      end
+    end
+  end
+
+
 end

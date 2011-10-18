@@ -32,6 +32,12 @@ describe DataImporter::Purchase do
         purchase.item.should == DataImporter::Item.new("A bag of hammers", 0.5)
       end
     end
+
+    describe "#merchant" do
+      it "extracts the merchant" do
+        purchase.merchant.should == DataImporter::Merchant.new("The General's Store", "123 Main St")
+      end
+    end
   end
 
 

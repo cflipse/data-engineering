@@ -1,0 +1,16 @@
+<heading>
+  <h2>Upload Data File</h2>
+</heading>
+
+<section>
+  <%= form_tag data_files_path, :multipart => true, :method => :post do %> 
+    <div>
+      <%= label_tag :data, "Data" %>
+      <%= file_field_tag :data  %> 
+    </div>
+
+    <div>
+      <%=  submit_tag "Import Data" %>
+    </div>
+  <% end %>
+</section>

@@ -1,6 +1,7 @@
 require 'spec_helper'
 
 describe Customer do
+  it { should have_many :purchases }
   it { should validate_presence_of :name }
 
   describe "uniqueness" do

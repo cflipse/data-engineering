@@ -3,6 +3,7 @@ class Item < ActiveRecord::Base
   validates :price_in_cents,  :presence => true
 
   belongs_to :merchant
+  has_many :purchases
 
   def price
     price_in_cents / 100.0

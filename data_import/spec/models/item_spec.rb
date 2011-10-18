@@ -5,6 +5,7 @@ describe Item do
   it { should validate_presence_of :price_in_cents }
 
   it { should belong_to :merchant }
+  it { should have_many :purchases }
 
   describe "#price" do
     it "returns a decimal value based on price_in_cents" do

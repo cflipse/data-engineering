@@ -17,8 +17,10 @@ describe DataImporter do
     it "delegates to a DataPersistance object" do
       importer = DataImporter.new(path)
       persistence = stub("persistence")
+      purchases = stub("purchases")
 
-      DataPersistence.should_receive(:new).with(importer).and_return persistence
+      importer.stub(:purchases => purchases)
+      DataPersistence.should_receive(:new).with(purchases).and_return persistence
       persistence.should_receive(:save).and_return true
 
       importer.save

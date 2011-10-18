@@ -15,7 +15,7 @@ class DataImporter
   end
 
   def save
-    DataPersistence.new(self).save
+    DataPersistence.new(purchases).save
   end
 
   private
@@ -32,4 +32,6 @@ class DataImporter
   def purchases
     @purchases ||= csv.map{|row| DataImporter::Purchase.new(row) }
   end
+
+
 end

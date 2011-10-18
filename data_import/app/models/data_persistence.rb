@@ -1,5 +1,9 @@
 class DataPersistence
-  def initialize(path)
+  def initialize(purchases)
+    @purchases = purchases
+  end
+
+  def build
   end
 
   def save

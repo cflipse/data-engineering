@@ -11,8 +11,7 @@ describe "uploading a tab delimited file" do
     attach_file "Data", path
     click_on "Import Data"
 
-    page.should have_content("Gross Revenue $95.00")
+    page.should have_content("Gross Revenue: $95.00")
   end
-
 
 end

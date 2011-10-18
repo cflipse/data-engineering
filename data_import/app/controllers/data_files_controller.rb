@@ -7,7 +7,7 @@ class DataFilesController < ApplicationController
     importer = DataImporter.new(params[:data].path)
 
     if importer.save
-      flash[:notice] = "Successfully imported data.  Gross Revenue: $#{importer.gross_revenue}"
+      flash[:notice] = "Successfully imported data.  Gross Revenue: $#{sprintf "%.2f", importer.gross_revenue}"
     else
       flash[:error] = "There was a problem importing your file"
     end

@@ -30,7 +30,7 @@ class DataImporter
   end
   
   def purchases
-    @purchases ||= csv.map{|row| DataImporter::Purchase.new(row) }
+    @purchases ||= csv.map{|row| DataImporter::PurchaseData.new(row) }
   end
 
 

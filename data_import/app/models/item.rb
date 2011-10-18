@@ -2,6 +2,8 @@ class Item < ActiveRecord::Base
   validates :description,  :presence => true
   validates :price_in_cents,  :presence => true
 
+  belongs_to :merchant
+
   def price
     price_in_cents / 100.0
   end

@@ -9,20 +9,13 @@ describe DataPersistence do
     describe "save" do
       before { subject.save }
 
-      it "builds unique merchants" do
-        Merchant.count.should == 3
+
+      specify "Snake has two purchases" do
+        Customer.where(:name => "Snake Plissken").first.should have(2).purchases
       end
 
-      it "builds unique items" do
-        Item.count.should == 3
-      end
-
-      it "builds unique customers" do
-        Customer.count.should == 3
-      end
-
-      it "builds all purchases" do
-        Purchase.count.should == 4
+      specify "The sneaker store has two purchases" do
+        Merchant.where(:name => "Sneaker Store Emporium").first.should have(2).purchases
       end
 
     end

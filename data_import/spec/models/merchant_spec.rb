@@ -16,4 +16,5 @@ describe Merchant do
 
 
   it { should have_many :items }
+  it { should have_many(:purchases).through :items }
 end

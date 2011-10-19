@@ -28,15 +28,15 @@ class DataPersistence
   end
 
   def build_merchant(merchant_data)
-    Merchant.find_or_create_by_name_and_address(merchant_data.name, merchant_data.address)
+    Merchant.for_data(merchant_data)
   end
 
   def build_item(merchant, item_data)
-    merchant.items.find_or_create_by_description_and_price_in_cents(item_data.description, item_data.price * 100)
+    merchant.items.for_data(item_data)
   end
 
   def build_customer(customer)
-    Customer.find_or_create_by_name(customer.name)
+    Customer.for_data(customer)
   end
 
 end

@@ -12,4 +12,10 @@ class Item < ActiveRecord::Base
   def price= p
     self.price_in_cents = p * 100
   end
+
+  def self.for_data(data)
+    description = data.description
+    price = data.price * 100
+    find_or_create_by_description_and_price_in_cents(description, price)
+  end
 end

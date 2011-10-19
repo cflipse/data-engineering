@@ -1,0 +1,47 @@
+= Data Importer submission
+
+== Getting started
+
+Requirements:  
+  Ruby 1.9
+  Bundler
+
+To start, clone the repsoitory and CD into the data_import directory.
+
+Run +bundle install+ to pull down the relevent gems.
+
+To start the application server, run +bundle exec unicorn+ from within
+the +data_import+ directory, and point your web browser to +http://localhost:8080+
+
+There is also the option for a command line import of a file:
+  script/import <filename> 
+
+== Comments
+
+The submission is written using Rails, mostly for the quick integration with
+active record.  At the moment, it's configured to use an SQLite database, 
+but that's easily changed by updateing the Gemfile and the database.yml, 
+in the usual fashion.
+
+the application was written in a TDD fashion using rspec, and I've been 
+experimenting with a coding style that reduces the reliance on Rails and 
+ActiveRecord.  As such, the logic classes that take care of parsing the 
+tab separated file and breaking out the entities represented on each row
+is done entirely using plain old ruby objects, and it's not until we
+start looking to persist the data that ActiveRecord enters into the scenario.
+
+Also, because most of the logic is outside of Rails proper, I thought
+I'd put together a quick script that would import the file from the command
+line. 
+
+The method ultimately used for persistance; running line by line through
+the CSV and saving each element on it's own, all inside a transaction, is
+probably far from the most efficient approach to take.  It does ensure that
+each element in the file is stored consistantly.  In a real application, I'd
+want to save the file produced, and push the data processing into a
+background task, so that larger files could be handled gracefully.
+
+The application was written and tested using the Ruby 1.9.3 release 
+candidate.  However, I don't belive that I used anything specific to that
+release, and it may work even down to the 1.8 series -- adding FasterCSV to the
+list of requirements and tweaking the lib file might be necessary in that case.
